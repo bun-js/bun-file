@@ -8,6 +8,7 @@ test("parses every supported extension", async () => {
     ["yml", "answer: 42\n", { answer: 42 }],
     ["toml", "answer = 42\n", { answer: 42 }],
     ["jsonc", '{"answer":42}', { answer: 42 }],
+    ["json5", "{answer:42}", { answer: 42 }],
     ["json", '{"answer":42}', { answer: 42 }],
     ["jsonl", '{"answer":42}\n', [{ answer: 42 }]],
   ] as const

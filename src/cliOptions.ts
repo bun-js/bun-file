@@ -13,7 +13,7 @@ export const cliOptions = {
   type: {
     short: "t",
     type: "string",
-    description: "Input file type: yaml, toml, json, jsonc, jsonl",
+    description: "Input file type: yaml, toml, json, json5, jsonc, jsonl, jsc",
   },
   format: {
     short: "f",
@@ -23,7 +23,7 @@ export const cliOptions = {
   output: {
     short: "o",
     type: "string",
-    description: "Save output to a file",
+    description: "Save output to a file or POST it to an HTTP(S) URL",
   },
   verbose: {
     short: "v",

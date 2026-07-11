@@ -13,6 +13,7 @@ export async function runParser(
       return Bun.TOML.parse(await file.text())
     case "jsonc":
       return Bun.JSONC.parse(await file.text())
+    case "json5":
     case "json":
       return Bun.JSON5.parse(await file.text())
     case "jsonl":

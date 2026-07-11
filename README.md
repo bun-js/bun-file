@@ -5,7 +5,9 @@
 [![license](https://img.shields.io/npm/l/%40bunx%2Ffile?style=flat-square)](./LICENSE)
 [![Bun](https://img.shields.io/badge/runtime-Bun%20%3E%3D1.3.14-f9f1e1?style=flat-square&logo=bun&logoColor=000)](https://bun.sh)
 
-Read and write the file formats supported natively by [Bun](https://bun.sh), from a small CLI or a TypeScript import.
+Read, convert, and write structured data from a small Bun-only CLI or a TypeScript import.
+
+`bun-file` is useful as a shell pipeline tool: it reads the format implied by an input filename (or an explicit `--type`) and converts the value to JSON or another selected format.
 
 `bun-file` is intentionally Bun-only. The package publishes its TypeScript source directly—there is no `dist` directory or build step.
 
@@ -48,10 +50,25 @@ bun-file config.toml --format json --output config.json
 
 # Read a file from a URL
 bun-file https://example.com/config.json
+
+# Parse stdin explicitly
+cat config.txt | bun-file --type json
+
+# Convert between formats using a positional output
+bun-file config.yaml config.json
+
+# Convert and write with an option
+bun-file config.json --format yaml --output config.yaml
+
+# Send the parsed value as JSON to an HTTP endpoint
+bun-file config.json --output https://example.com/import
 ```
 
-When reading a file, the input type is inferred from its extension. For stdin, provide `--type`.
-URLs without a file extension default to JSON; use `--type` to override this.
+The first positional argument is the input. The optional second positional argument is the output; `--output` takes precedence when both are provided. If an output format is selected, the converted value is printed or written in that format. With no output format, redirected stdout receives formatted JSON; an interactive terminal prints the parsed value directly.
+
+Input formats are inferred from the filename extension. Use `--type` for stdin, extensionless files, or to override inference. URL extensions are inferred from the URL pathname, ignoring its query string; URLs without an extension default to JSON.
+
+Local paths, `file:` URLs, and HTTP(S) URLs are supported as inputs. HTTP(S) input is fetched before parsing. HTTP(S) output is sent as a JSON `POST` request instead of being written to disk.
 
 ### Supported formats
 
@@ -67,11 +84,22 @@ URLs without a file extension default to JSON; use `--type` to override this.
 
 TOML can be read, but Bun does not provide a native TOML serializer, so TOML output is not supported.
 
+JSON and JSON5 input use Bun's JSON5 parser, so JSON5 syntax is accepted for both `.json` and `.json5` files. JSC is Bun's binary serialized format; when writing JSC to redirected stdout, the binary bytes are preserved. HTTP output is always serialized as JSON, regardless of the requested output format.
+
 Run `bun-file --help` for all options:
 
 ```text
 bun-file [options] <input> [output]
 ```
+
+| Option | Alias | Description |
+| --- | :---: | --- |
+| `--help` | `-h` | Show help and exit |
+| `--type <format>` | `-t` | Set the input format |
+| `--format <format>` | `-f` | Set the output format |
+| `--output <path>` | `-o` | Write to a file or POST to an HTTP(S) URL |
+| `--verbose` | `-v` | Show additional output, including HTTP response details |
+| `--version` | `-V` | Show the installed version |
 
 ## Standalone binaries
 
@@ -96,6 +124,8 @@ import { cli } from "@bunx/file"
 
 await cli(["config.toml", "--format", "json"])
 ```
+
+The CLI accepts the same argument array as the executable, making it convenient to embed in another Bun tool.
 
 The default CLI executable is also available in the package's `bin` directory for Bun to run directly.
 

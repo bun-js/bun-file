@@ -1,7 +1,7 @@
 {
   "name": "@bunx/file",
   "version": "0.0.6",
-  "description": "Read and write Bun-supported file formats from the CLI or TypeScript",
+  "description": "Read and write Bun-supported file formats from the CLI",
   "keywords": [
     "bun",
     "cli",

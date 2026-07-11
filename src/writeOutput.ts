@@ -13,6 +13,6 @@ export async function writeOutput(data: unknown, args: CliArgs): Promise<void> {
       console.log(output)
     }
   } else {
-    console.log(data)
+    console.log(process.stdout.isTTY ? data : JSON.stringify(data, null, 2))
   }
 }

@@ -1,7 +1,10 @@
 import { deserialize } from "bun:jsc"
-import type { BunFile } from "bun"
+import type { InputFile } from "./utils/getInputFile"
 
-export async function runParser(file: BunFile, ext: string): Promise<unknown> {
+export async function runParser(
+  file: InputFile,
+  ext: string,
+): Promise<unknown> {
   switch (ext) {
     case "yml":
     case "yaml":

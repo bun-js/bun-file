@@ -8,3 +8,16 @@ test("renders help", () => {
   })
   expect(helpCmd()).toContain("--help")
 })
+
+test("renders plain markdown when stdout is redirected", () => {
+  Object.defineProperty(process.stdin, "isTTY", {
+    value: true,
+    configurable: true,
+  })
+  Object.defineProperty(process.stdout, "isTTY", {
+    value: false,
+    configurable: true,
+  })
+
+  expect(helpCmd()).not.toContain("\u001b[")
+})

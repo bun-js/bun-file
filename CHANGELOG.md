@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/bun-js/bun-file/compare/v0.1.0...v0.2.0) (2026-07-11)
+
+
+### Features
+
+* support explicit stdin and stdout markers ([c3e60bc](https://github.com/bun-js/bun-file/commit/c3e60bc6c395d082dd10f624968134bcfd0f137f))
+* support explicit stdin and stdout markers ([8c1355d](https://github.com/bun-js/bun-file/commit/8c1355dfd51884e2fb91a3fc571951744e6f7052))
+
+
+### Bug Fixes
+
+* use main for manual release workflows ([989f437](https://github.com/bun-js/bun-file/commit/989f437bfac0013947c22e3014ace939e8a556ca))
+* use main for manual release workflows ([f260445](https://github.com/bun-js/bun-file/commit/f2604457b15b40f721f18ff10900bff1937dacd6))
+
 ## [0.1.0](https://github.com/bun-js/bun-file/compare/v0.0.7...v0.1.0) (2026-07-11)
 
 

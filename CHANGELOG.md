@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.1.0](https://github.com/bun-js/bun-file/compare/v0.0.6...v0.1.0) (2026-07-11)
+## [0.0.7](https://github.com/bun-js/bun-file/compare/v0.0.6...v0.0.7) (2026-07-11)
 
 
 ### Features

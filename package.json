@@ -1,6 +1,6 @@
 {
   "name": "@bunx/file",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read and write Bun-supported file formats from the CLI",
   "keywords": [
     "bun",

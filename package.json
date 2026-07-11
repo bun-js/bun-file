@@ -1,6 +1,6 @@
 {
   "name": "@bunx/file",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Read and write Bun-supported file formats from the CLI or TypeScript",
   "keywords": [
     "bun",
@@ -12,6 +12,10 @@
     "jsonl"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bun-js/bun-file.git"
+  },
   "author": {
     "name": "neves"
   },

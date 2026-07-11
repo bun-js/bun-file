@@ -7,3 +7,8 @@ test("converts supported formats and defaults to JSON", () => {
   expect(convertTo(value, "json")).toBe('{\n  "answer": 42\n}')
   expect(convertTo(value, "jsc")).toBeInstanceOf(SharedArrayBuffer)
 })
+
+test("rejects TOML output", () =>
+  expect(() => convertTo({ answer: 42 }, "toml")).toThrow(
+    "TOML output is not supported by Bun",
+  ))

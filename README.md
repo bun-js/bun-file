@@ -53,13 +53,15 @@ When reading a file, the input type is inferred from its extension. For stdin, p
 
 | Format | Read | Write |
 | --- | :---: | :---: |
-| TOML | ✓ | ✓ |
+| TOML | ✓ |  |
 | YAML | ✓ | ✓ |
 | JSON | ✓ | ✓ |
 | JSONC | ✓ |  |
 | JSON5 | ✓ |  |
 | JSONL | ✓ | ✓ |
 | JSC | ✓ | ✓ |
+
+TOML can be read, but Bun does not provide a native TOML serializer, so TOML output is not supported.
 
 Run `bun-file --help` for all options:
 
@@ -96,6 +98,17 @@ With Mise installed, publish it with:
 ```sh
 mise run publish
 ```
+
+### GitHub Actions
+
+The repository uses [Release Please](https://github.com/googleapis/release-please) to keep package versions, changelogs, and GitHub Releases synchronized:
+
+1. Merge changes using [Conventional Commits](https://www.conventionalcommits.org/), such as `fix: handle empty input` or `feat: add jsonl output`.
+2. Release Please opens or updates a release PR on `main`.
+3. Merge the release PR to create the GitHub Release.
+4. The [publish workflow](./.github/workflows/publish.yml) validates the release tag against `package.json`, runs the checks, and publishes to npm.
+
+For secure, tokenless publishing, configure npm Trusted Publishing for the repository and `publish.yml`. The workflow requests the required GitHub OIDC permission and npm generates provenance automatically.
 
 ## License
 

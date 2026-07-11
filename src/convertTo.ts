@@ -9,6 +9,8 @@ export function convertTo(
       return Bun.YAML.stringify(data, null, 2)
     case "jsc":
       return serialize(data)
+    case "toml":
+      throw new Error("TOML output is not supported by Bun")
   }
   return JSON.stringify(data, null, 2)
 }

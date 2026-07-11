@@ -1,4 +1,4 @@
 #!/usr/bin/env bun
-import { cli } from "bun-file"
+import { cli } from "@bunx/file"
 
 await cli()

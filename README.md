@@ -1,8 +1,8 @@
 # bun-file
 
-[![npm version](https://img.shields.io/npm/v/bun-file?style=flat-square)](https://www.npmjs.com/package/bun-file)
-[![npm downloads](https://img.shields.io/npm/dm/bun-file?style=flat-square)](https://www.npmjs.com/package/bun-file)
-[![license](https://img.shields.io/npm/l/bun-file?style=flat-square)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/%40bunx%2Ffile?style=flat-square)](https://www.npmjs.com/package/@bunx/file)
+[![npm downloads](https://img.shields.io/npm/dm/%40bunx%2Ffile?style=flat-square)](https://www.npmjs.com/package/@bunx/file)
+[![license](https://img.shields.io/npm/l/%40bunx%2Ffile?style=flat-square)](./LICENSE)
 [![Bun](https://img.shields.io/badge/runtime-Bun%20%3E%3D1.3.14-f9f1e1?style=flat-square&logo=bun&logoColor=000)](https://bun.sh)
 
 Read and write the file formats supported natively by [Bun](https://bun.sh), from a small CLI or a TypeScript import.
@@ -16,7 +16,7 @@ Read and write the file formats supported natively by [Bun](https://bun.sh), fro
 ## Installation
 
 ```sh
-bun add bun-file
+bun add @bunx/file
 ```
 
 ## CLI
@@ -27,13 +27,13 @@ For one-off commands, run it directly with `bunx` without installing the package
 
 ```sh
 # Read a file and print its parsed value
-bunx bun-file config.toml
+bunx @bunx/file config.toml
 
 # Convert stdin to JSON
-cat config.yaml | bunx bun-file --type yaml --format json
+cat config.yaml | bunx @bunx/file --type yaml --format json
 
 # Write the converted value to a file
-bunx bun-file config.toml --format json --output config.json
+bunx @bunx/file config.toml --format json --output config.json
 ```
 
 ```sh
@@ -74,7 +74,7 @@ bun-file [options] <input> [output]
 The package exports the CLI entry point for use in Bun applications:
 
 ```ts
-import { cli } from "bun-file"
+import { cli } from "@bunx/file"
 
 await cli(["config.toml", "--format", "json"])
 ```

@@ -20,7 +20,7 @@ test("handles help and version exits", async () => {
     await cli(["--help"])
     await cli(["--version"])
     expect(log).toHaveBeenCalledTimes(2)
-    expect(errorLog).toHaveBeenCalledTimes(2)
+    expect(errorLog).toHaveBeenCalledTimes(0)
   } finally {
     process.exit = exit
     console.log = original

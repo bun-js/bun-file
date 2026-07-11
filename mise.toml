@@ -31,6 +31,6 @@ run = [
 
 [tasks.publish]
 description = "Publish the package to npm"
-depends = ["check"]
+depends = ["check", "package-smoke"]
 interactive = true
 run = "bun publish"

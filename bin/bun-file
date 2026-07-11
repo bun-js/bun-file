@@ -1,4 +1,4 @@
 #!/usr/bin/env bun
 import { cli } from "@bunx/file"
 
-await cli()
+process.exitCode = await cli()

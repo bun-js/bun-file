@@ -11,11 +11,11 @@ export async function cli(argv = Bun.argv.slice(2)) {
 
     if (args.help || argv.length === 0) {
       console.log(helpCmd())
-      process.exit(1)
+      return 0
     }
     if (args.version) {
       console.log(versionCmd())
-      process.exit(1)
+      return 0
     }
 
     const [input, ext] = await parseInput(args)
@@ -25,5 +25,8 @@ export async function cli(argv = Bun.argv.slice(2)) {
     await writeOutput(data, args)
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error))
+    return 1
   }
+
+  return 0
 }

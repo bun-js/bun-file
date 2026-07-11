@@ -74,7 +74,9 @@ test("throws when the URL rejects the output", async () => {
         { ok: true },
         cliArgs(["input.json", "https://example.test/results"]),
       ),
-    ).rejects.toBe("Failed to POST output to https://example.test/results: 400 ")
+    ).rejects.toBe(
+      "Failed to POST output to https://example.test/results: 400 ",
+    )
   } finally {
     globalThis.fetch = originalFetch
   }
@@ -91,11 +93,7 @@ test("logs the URL response when verbose output is enabled", async () => {
   try {
     await writeOutput(
       { ok: true },
-      cliArgs([
-        "input.json",
-        "--verbose",
-        "https://example.test/results",
-      ]),
+      cliArgs(["input.json", "--verbose", "https://example.test/results"]),
     )
     expect(error).toHaveBeenCalledWith(response, { accepted: true })
   } finally {

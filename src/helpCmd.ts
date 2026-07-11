@@ -25,5 +25,5 @@ export function helpCmd(): string {
 
 ### Flags:
 ${args2markdown(cliOptions)}`
-  return process.stdin.isTTY ? Bun.markdown.ansi(markdown) : markdown
+  return process.stdout.isTTY ? Bun.markdown.ansi(markdown) : markdown
 }

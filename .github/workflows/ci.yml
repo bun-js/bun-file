@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Mise and repository tools
+        uses: jdx/mise-action@v3
+
+      - name: Run repository checks
+        run: mise run check

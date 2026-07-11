@@ -1,5 +1,5 @@
 import type { CliArgs } from "./cliArgs"
-import { convertTo } from "./convertTo"
+import { convertTo } from "./utils/convertTo"
 import { extractExtension } from "./utils/extractExtension"
 import { isHttpUrl } from "./utils/isHttpUrl"
 import { tryJson } from "./utils/tryJson"
@@ -20,6 +20,13 @@ export async function writeOutput(data: unknown, args: CliArgs): Promise<void> {
   }
 
   const format = args.format ?? (outFile && extractExtension(outFile))
+  if (outFile === "-") {
+    console.log(
+      format ? convertTo(data, format) : JSON.stringify(data, null, 2),
+    )
+    return
+  }
+
   if (format) {
     const output = convertTo(data, format)
     if (args.output) {

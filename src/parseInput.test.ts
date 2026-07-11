@@ -24,7 +24,7 @@ test("reads files and stdin, including errors", async () => {
     value: true,
     configurable: true,
   })
-  expect(() => parseInput(cliArgs([]))).toThrow("Missing input file")
+  await expect(parseInput(cliArgs([]))).rejects.toThrow("Missing input file")
 })
 
 test("reads URLs", async () => {

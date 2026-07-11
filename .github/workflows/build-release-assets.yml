@@ -1,0 +1,53 @@
+name: Build release binaries
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: bun-linux-x64
+            name: bun-file-linux-x64
+            extension: ""
+          - target: bun-linux-arm64
+            name: bun-file-linux-arm64
+            extension: ""
+          - target: bun-darwin-x64
+            name: bun-file-darwin-x64
+            extension: ""
+          - target: bun-darwin-arm64
+            name: bun-file-darwin-arm64
+            extension: ""
+          - target: bun-windows-x64
+            name: bun-file-windows-x64
+            extension: .exe
+
+    steps:
+      - name: Check out released commit
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Set up Mise and repository tools
+        uses: jdx/mise-action@v3
+
+      - name: Build standalone executable
+        run: >-
+          bun build --compile
+          --target=${{ matrix.target }}
+          bin/bun-file
+          --outfile=dist/${{ matrix.name }}${{ matrix.extension }}
+
+      - name: Upload executable to GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" "dist/${{ matrix.name }}${{ matrix.extension }}" --clobber

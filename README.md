@@ -69,6 +69,20 @@ Run `bun-file --help` for all options:
 bun-file [options] <input> [output]
 ```
 
+## Standalone binaries
+
+Each GitHub Release includes standalone executables for Linux, macOS, and Windows. Download the asset matching your operating system and architecture from the [latest release](https://github.com/bun-js/bun-file/releases/latest).
+
+Available assets:
+
+- `bun-file-linux-x64`
+- `bun-file-linux-arm64`
+- `bun-file-darwin-x64`
+- `bun-file-darwin-arm64`
+- `bun-file-windows-x64.exe`
+
+These executables include the Bun runtime and do not require Bun to be installed separately.
+
 ## API
 
 The package exports the CLI entry point for use in Bun applications:
@@ -92,6 +106,8 @@ bun run check
 ## Publishing
 
 This package does not require a compilation step. `bun publish` publishes the TypeScript source listed in `package.json`'s `files` field.
+
+See the [publishing guide](./docs/publishing.md) for the complete npm, Trusted Publishing, and GitHub Actions setup.
 
 With Mise installed, publish it with:
 

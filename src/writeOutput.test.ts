@@ -44,3 +44,40 @@ test("prints JSON for raw output when stdout is redirected", async () => {
     console.log = original
   }
 })
+
+test("POSTs JSON when the output is an HTTP URL", async () => {
+  const fetchMock = mock(async () => new Response(null, { status: 201 }))
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = fetchMock as unknown as typeof fetch
+  try {
+    await writeOutput(
+      { ok: true },
+      cliArgs(["input.json", "--output", "https://example.test/results"]),
+    )
+    expect(fetchMock).toHaveBeenCalledWith("https://example.test/results", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: '{"ok":true}',
+    })
+  } finally {
+    globalThis.fetch = originalFetch
+  }
+})
+
+test("throws when the URL rejects the output", async () => {
+  const fetchMock = mock(async () => new Response(null, { status: 400 }))
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = fetchMock as unknown as typeof fetch
+  try {
+    await expect(
+      writeOutput(
+        { ok: true },
+        cliArgs(["input.json", "https://example.test/results"]),
+      ),
+    ).rejects.toThrow(
+      "Failed to POST output to https://example.test/results: 400",
+    )
+  } finally {
+    globalThis.fetch = originalFetch
+  }
+})

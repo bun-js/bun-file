@@ -2,5 +2,6 @@
 onlyFailures = true
 coverageSkipTestFiles = true
 coverage = true
+coverageThreshold = 1.0
 [test.reporter]
 dots = true

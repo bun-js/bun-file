@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test"
-import { convertTo } from "./convertTo"
 import { runParser } from "./runParser"
+import { convertTo } from "./utils/convertTo"
 
 test("parses every supported extension", async () => {
   const cases = [

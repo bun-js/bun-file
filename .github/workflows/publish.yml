@@ -23,7 +23,7 @@ jobs:
       - name: Check out released commit
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          ref: ${{ github.event.release.tag_name || github.ref_name }}
 
       - name: Set up Mise and repository tools
         uses: jdx/mise-action@v3

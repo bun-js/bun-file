@@ -21,3 +21,11 @@ test("renders plain markdown when stdout is redirected", () => {
 
   expect(helpCmd()).not.toContain("\u001b[")
 })
+
+test("includes URL output examples", () => {
+  Object.defineProperty(process.stdout, "isTTY", {
+    value: false,
+    configurable: true,
+  })
+  expect(helpCmd()).toContain("https://ipv4-check-perf.radar.cloudflare.com/api/info")
+})

@@ -13,3 +13,17 @@ gh api --method PATCH "repos/$repo" \
 gh api --method PUT "repos/$repo/actions/permissions/workflow" \
   -f default_workflow_permissions=write \
   -F can_approve_pull_request_reviews=true
+
+# Require the pull-request CI workflow to pass before merging into main.
+gh api --method PUT "repos/$repo/branches/main/protection" \
+  --input - <<'JSON'
+{
+  "required_status_checks": {
+    "strict": true,
+    "contexts": ["Check"]
+  },
+  "enforce_admins": false,
+  "required_pull_request_reviews": null,
+  "restrictions": null
+}
+JSON

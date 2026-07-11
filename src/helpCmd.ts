@@ -11,6 +11,9 @@ export function helpCmd(): string {
 ## Usage:
 > [${cmd}]() [flags...] <input> [output]
 
+- [${cmd}]() wrangler.toml wrangler.jsonc
+- [${cmd}]() https://ipv4-check-perf.radar.cloudflare.com/api/info
+
 #### Supported Formats:
 
 | Format | Read | Write |
@@ -25,5 +28,7 @@ export function helpCmd(): string {
 
 ### Flags:
 ${args2markdown(cliOptions)}`
-  return process.stdout.isTTY ? Bun.markdown.ansi(markdown) : markdown
+  return process.stdout.isTTY
+    ? Bun.markdown.ansi(markdown, { hyperlinks: true })
+    : markdown
 }

@@ -74,10 +74,32 @@ test("throws when the URL rejects the output", async () => {
         { ok: true },
         cliArgs(["input.json", "https://example.test/results"]),
       ),
-    ).rejects.toThrow(
-      "Failed to POST output to https://example.test/results: 400",
-    )
+    ).rejects.toBe("Failed to POST output to https://example.test/results: 400 ")
   } finally {
     globalThis.fetch = originalFetch
+  }
+})
+
+test("logs the URL response when verbose output is enabled", async () => {
+  const response = new Response('{"accepted":true}', { status: 200 })
+  const fetchMock = mock(async () => response)
+  const error = mock(() => {})
+  const originalFetch = globalThis.fetch
+  const originalError = console.error
+  globalThis.fetch = fetchMock as unknown as typeof fetch
+  console.error = error as typeof console.error
+  try {
+    await writeOutput(
+      { ok: true },
+      cliArgs([
+        "input.json",
+        "--verbose",
+        "https://example.test/results",
+      ]),
+    )
+    expect(error).toHaveBeenCalledWith(response, { accepted: true })
+  } finally {
+    globalThis.fetch = originalFetch
+    console.error = originalError
   }
 })

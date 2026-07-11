@@ -25,8 +25,13 @@ export const cliOptions = {
     type: "string",
     description: "Save output to a file",
   },
-  version: {
+  verbose: {
     short: "v",
+    type: "boolean",
+    description: "Increase verbosity output",
+  },
+  version: {
+    short: "V",
     type: "boolean",
     description: "Show version and exit",
   },

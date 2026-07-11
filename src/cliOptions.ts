@@ -8,17 +8,17 @@ export const cliOptions = {
   help: {
     short: "h",
     type: "boolean",
-    description: "Show this help message and exit.",
+    description: "Show this help message and exit",
   },
   type: {
     short: "t",
     type: "string",
-    description: "File type: yaml, toml, json, jsonc, jsonl",
+    description: "Input file type: yaml, toml, json, jsonc, jsonl",
   },
   format: {
     short: "f",
     type: "string",
-    description: "File output format: yaml, json, jsonl, jsc",
+    description: "Output file format: yaml, json, jsonl, jsc",
   },
   output: {
     short: "o",
@@ -28,6 +28,6 @@ export const cliOptions = {
   version: {
     short: "v",
     type: "boolean",
-    description: "Show version and exit.",
+    description: "Show version and exit",
   },
 } satisfies Record<string, Option>

@@ -28,3 +28,19 @@ test("writes files, prints formatted output, and prints raw data", async () => {
     console.log = original
   }
 })
+
+test("prints JSON for raw output when stdout is redirected", async () => {
+  Object.defineProperty(process.stdout, "isTTY", {
+    value: false,
+    configurable: true,
+  })
+  const log = mock(() => {})
+  const original = console.log
+  console.log = log as typeof console.log
+  try {
+    await writeOutput({ ok: true }, cliArgs(["input.json"]))
+    expect(log).toHaveBeenCalledWith('{\n  "ok": true\n}')
+  } finally {
+    console.log = original
+  }
+})

@@ -45,9 +45,13 @@ cat config.yaml | bun-file --type yaml --format json
 
 # Write the converted value to a file
 bun-file config.toml --format json --output config.json
+
+# Read a file from a URL
+bun-file https://example.com/config.json
 ```
 
 When reading a file, the input type is inferred from its extension. For stdin, provide `--type`.
+URLs without a file extension default to JSON; use `--type` to override this.
 
 ### Supported formats
 

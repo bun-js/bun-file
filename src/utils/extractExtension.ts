@@ -1,8 +1,7 @@
-import { fail } from "./fail"
-
 export function extractExtension(file: string): string {
-  return (
-    file.split(".").pop()?.toString() ??
-    fail(`can't extract extension from file '${file}'`)
-  )
+  const filename = file.split("/").at(-1) ?? file
+  const extension = filename.split(".").pop()
+  return extension && extension !== filename && !filename.startsWith(".")
+    ? extension
+    : "json"
 }

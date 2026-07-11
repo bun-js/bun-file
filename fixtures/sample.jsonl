@@ -1,0 +1,8 @@
+{"foo":"bar"}
+null
+{"bar":"foo"}
+{}
+123
+"string"
+true
+["nested", "array"]

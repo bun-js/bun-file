@@ -1,0 +1,4 @@
+/* file comment */
+{
+  "foo": "bar" // comment
+}

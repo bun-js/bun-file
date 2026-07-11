@@ -1,0 +1,123 @@
+%YAML 1.2
+---
+# ==========================================
+# 1. SCALAR TYPES (Basic Data Types)
+# ==========================================
+
+# Strings
+string_simple: Hello World
+string_quoted: "Validates tabs \t and newlines \n"
+string_single: 'Escapes nothing, even backslashes \'
+
+# Numbers
+integer_decimal: 42
+integer_octal: 0o52
+integer_hex: 0x2A
+float_standard: 3.14159
+float_exponential: 6.022e+23
+float_infinity: .inf
+not_a_number: .NaN
+
+# Booleans
+boolean_true: true
+boolean_false: false
+
+# Nulls
+null_value: null
+null_shortcut: ~
+
+# Dates and Times (ISO-8601)
+date_only: 2026-07-10
+datetime_utc: 2026-07-10T13:06:00Z
+datetime_local: 2026-07-10T13:06:00-03:00
+
+# ==========================================
+# 2. COLLECTIONS (Structures)
+# ==========================================
+
+# Block Sequences (Lists)
+block_sequence:
+  - Mercury
+  - Venus
+  - Earth
+
+# Flow Sequences (Inline Lists)
+flow_sequence: [ Mars, Jupiter, Saturn ]
+
+# Block Mappings (Key-Value Pairs)
+block_mapping:
+  name: John Doe
+  role: Developer
+
+# Flow Mappings (Inline JSON-like Objects)
+flow_mapping: { id: 101, status: "active" }
+
+# Nested Collections (List of Objects)
+nested_structure:
+  - id: 1
+    languages:
+      - Python
+      - YAML
+  - id: 2
+    languages:
+      - Rust
+      - Go
+
+# Use a clear delimiter like a hyphen or pipe
+departure_city|arrival_city:
+  flight_distance_miles: 2500
+
+flights:
+  - route:
+      departure: "NYC"
+      arrival: "LAX"
+    flight_distance_miles: 2500
+
+# ==========================================
+# 3. MULTI-LINE STRINGS
+# ==========================================
+
+# Literal Block Scalar (Preserves newlines exactly as written)
+literal_block: |
+  Line one of text.
+  Line two of text.
+  Line three of text.
+
+# Folded Block Scalar (Converts single newlines into spaces)
+folded_block: >
+  This long paragraph will look like
+  a single sentence when parsed.
+  Empty lines create paragraphs.
+
+# Block Chomping Indicators
+strip_trailing_newlines: |-
+  Text without the final newline character.
+keep_trailing_newlines: |+
+  Text that keeps all blank lines at the end.
+
+
+# ==========================================
+# 4. ADVANCED FEATURES (Anchors, Aliases, Tags)
+# ==========================================
+
+# Anchors (&) define a reusable chunk of data
+default_settings: &base_config
+  timeout: 30
+  retry_attempts: 3
+  environment: production
+
+# Aliases (*) inject the anchored data elsewhere
+service_one:
+  <<: *base_config  # Merge key (<<) injects all keys from base_config
+  port: 8080        # Adds a new unique key
+
+service_two:
+  <<: *base_config
+  timeout: 60       # Overrides the inherited timeout value
+
+# Explicit Data Tags (Forcing a specific data type)
+forced_string: !!str 12345
+forced_integer: !!int "99"
+binary_data: !!binary |
+  R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7
+

@@ -1,0 +1,6 @@
+[test]
+onlyFailures = true
+coverageSkipTestFiles = true
+coverage = true
+[test.reporter]
+dots = true

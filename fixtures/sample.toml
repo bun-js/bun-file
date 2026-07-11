@@ -1,0 +1,11 @@
+# sample toml file
+name = "pageview"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "sqlite"
+
+[tasks."test:watch"]
+description = "Watch Tests"
+run = "bun test --watch"
+depends = ["litestream", "serve"]

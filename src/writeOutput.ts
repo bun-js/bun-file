@@ -21,8 +21,20 @@ export async function writeOutput(data: unknown, args: CliArgs): Promise<void> {
 
   const format = args.format ?? (outFile && extractExtension(outFile))
   if (outFile === "-") {
+    if (format === "jsc" && !process.stdout.isTTY) {
+      process.stdout.write(
+        new Uint8Array(convertTo(data, format) as SharedArrayBuffer),
+      )
+      return
+    }
+
+    const output = format
+      ? convertTo(data, format)
+      : JSON.stringify(data, null, 2)
     console.log(
-      format ? convertTo(data, format) : JSON.stringify(data, null, 2),
+      output instanceof SharedArrayBuffer
+        ? btoa(String.fromCharCode(...new Uint8Array(output)))
+        : output,
     )
     return
   }

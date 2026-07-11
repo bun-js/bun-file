@@ -27,7 +27,5 @@ test("includes URL output examples", () => {
     value: false,
     configurable: true,
   })
-  expect(helpCmd()).toContain(
-    "https://ipv4-check-perf.radar.cloudflare.com/api/info",
-  )
+  expect(helpCmd()).toContain("https://httpbun.com/ip")
 })

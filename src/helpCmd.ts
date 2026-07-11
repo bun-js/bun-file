@@ -12,7 +12,7 @@ export function helpCmd(): string {
 > [${cmd}]() [flags...] <input> [output]
 
 - [${cmd}]() wrangler.toml wrangler.jsonc
-- [${cmd}]() https://ipv4-check-perf.radar.cloudflare.com/api/info
+- [${cmd}]() \`-v\` https://httpbun.com/ip https://httpbun.com/post
 
 #### Supported Formats:
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/bun-js/bun-file/compare/v0.2.0...v0.2.1) (2026-07-11)
+
+
+### Bug Fixes
+
+* handle pipe output edge cases ([#17](https://github.com/bun-js/bun-file/issues/17)) ([a09793b](https://github.com/bun-js/bun-file/commit/a09793bca4cbd18bc7c9aaee6eed02f8e2ea98f6))
+
 ## [0.2.0](https://github.com/bun-js/bun-file/compare/v0.1.0...v0.2.0) (2026-07-11)
 
 
